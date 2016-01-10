@@ -3,7 +3,6 @@
 # Test cases for tournament.py
 
 from tournament import *
-
 def testDeleteMatches():
     deleteMatches()
     print "1. Old matches can be deleted."
@@ -65,6 +64,7 @@ def testStandingsBeforeMatches():
     if len(standings) < 2:
         raise ValueError("Players should appear in playerStandings even before "
                          "they have played any matches.")
+        print standings
     elif len(standings) > 2:
         raise ValueError("Only registered players should appear in standings.")
     if len(standings[0]) != 4:
@@ -123,6 +123,7 @@ def testPairings():
         raise ValueError(
             "After one match, players with one win should be paired.")
     print "8. After one match, players with one win are paired."
+    
 
 
 if __name__ == '__main__':
