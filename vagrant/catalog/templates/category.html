@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+        <link href='https://fonts.googleapis.com/css?family=Rubik:700|Playfair+Display' rel='stylesheet' type='text/css'>
+        <script src="{{ url_for('static', filename='js/jquery-2.2.2.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+    </head>
+    <body>
+        <div class="top-nav">
+            <div class="login">LOGIN</div>
+            <div class="home">
+                <a href = "{{url_for('categories_list')}}">HOME</a>
+            </div>
+        </div>
+
+        <div class="header">
+            <h1>{{category.name}}</h1>
+        </div>
+
+        <div class="secondary">
+            <div class="breadcrumbs">
+                <a href= "{{url_for('categories_list')}}">Shop</a>
+                <span>/ {{category.name}}</span>
+            </div>
+
+            <div class = "controls">
+                <a class="control" href="{{url_for('new_item', category_id = category.id)}}" title="Add New Item">+</a>
+                <a class="control" href = "{{url_for('delete_category', category_id = category.id)}}" title="Delete Category">-</a>
+                <a class="control" href = "{{url_for('edit_category', category_id = category.id)}}" title="Edit Category">?</a>
+            </div>
+        </div>
+
+        <div class="wrapper">
+
+            <div class = "item-list">
+                {% for i in items %}
+                <a class="item" href="{{url_for('show_item', item_id=i.id, category_id=i.category_id) }}">
+                    <div class="item-tile">
+                        <div class = "item-mobile-info">
+                            <div class = "item-name">{{i.name}}</div>
+                            <div class = "item-price">{{i.price}}</div>
+                        </div>
+                        <div class="overlay">
+                            <div class = "item-name">{{i.name}}</div>
+                            <div class = "item-price">{{i.price}}</div>
+                        </div>
+                        <div class = "item-image">
+                            {% if i.image %}
+                            <img src = "static/images/{{i.image}}" />
+                            {% else %}
+                            <img src = "static/images/no-image" />
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="footer">
+            <p class="about">Mystery Shack Online Catalog</p>
+            <img class="badge" src="https://upload.wikimedia.org/wikipedia/en/c/c2/Gravity_Falls_logo.png"/>
+            <p class="visit">618 Gopher Road, Gravity Falls, OR</p>
+        </div>
+    </body>
+</html>
