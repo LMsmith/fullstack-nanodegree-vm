@@ -1,17 +1,20 @@
 <html>
     <head>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
-        <link href='https://fonts.googleapis.com/css?family=Rubik:700|Playfair+Display' rel='stylesheet' type='text/css'>
-        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+        <link href='https://fonts.googleapis.com/css?family=Work+Sans:100|Alegreya' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div class="top-nav">
-            <div class="login">LOGIN</div>
-            <div class="home">HOME</div>
-        </div>
-        <div class="header">
-            <h1>{{item.name}}</h1>
+            <div class="login">
+                {%if 'username' not in session %}
+                <a href="{{url_for('show_login')}}">Login</a>
+                {% else %}
+                Not {{session.username}}? <a href="{{url_for('disconnect')}}">Logout </a>
+                {% endif %}
+                </div>
+            <div class="home">
+                <a href = "{{url_for('categories_list')}}">Home</a>
+            </div>
         </div>
 
         <div class="secondary">
@@ -21,26 +24,34 @@
                 <a href="{{url_for('show_category', category_id=item.category_id) }}">{{category.name}}</a>
                 <span>/ {{item.name}}</span>
             </div>
+            {% if item.user_id == session.user_id %}
             <div class = "controls">
-                <a class="control" href = "{{url_for('delete_item', category_id = item.category_id, item_id = item.id)}}" title="Delete Item">-</a>
+                </br>
+                <a class="control" href = "{{url_for('delete_item', category_id = item.category_id, item_id = item.id)}}" title="Delete Item">X</a>
                 <a class="control" href = "{{url_for('edit_item', category_id = item.category_id, item_id = item.id)}}" title="Edit Item">?</a>
             </div>
+            {% endif %}
         </div>
+
+        <div class="header">
+            <h1>{{item.name}}</h1>
+        </div>
+
         <div class="wrapper">
             <div class = "item-detail-image">
                 {% if item.image %}
-                <img src = "{{item.image}}" />
+                <img src = "../../../{{item.image}}" />
+                {% else %}
+                <img src = "../../../static/images/no-image.jpg" />
                 {% endif %}
             </div>
             <div class= "item-detail-description">
-                <p class="item-detail-price">Price: {{item.price}}</p>
+                <p class="item-detail-price">{{item.price}}</p>
                 <p>{{item.description}}</p>
             </div>
         </div>
         <div class="footer">
-            <p class="about">Mystery Shack Online Catalog</p>
-            <img class="badge" src="https://upload.wikimedia.org/wikipedia/en/c/c2/Gravity_Falls_logo.png"/>
-            <p class="visit">618 Gopher Road, Gravity Falls, OR</p>
+            <p class="about">home catalog 2016</p>
         </div>
     </body>
 </html>

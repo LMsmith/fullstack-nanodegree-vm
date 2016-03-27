@@ -22,9 +22,7 @@
                 <a href= "{{url_for('categories_list')}}">Shop</a>
                 <span>/</span>
                 <a href="{{url_for('show_category', category_id=item.category_id) }}">{{category.name}}</a>
-                <span>/</span>
-                <a href="{{url_for('show_item', item_id=item.id,  category_id=item.category_id) }}">{{item.name}}</a>
-                <span>/ Delete</span>
+                <span>/ {{item.name}}</span>
             </div>
         </div>
 
@@ -32,15 +30,18 @@
             <h1>{{item.name}}</h1>
         </div>
 
-        <div class = "wrapper">
-            <p>Do you really want to delete {{item.name}}?</p>
-            <div class = "delete-item-content">
-                <form action = "{{url_for('delete_item', category_id = item.category_id, item_id = item.id)}}" method = "POST">
-                    <input type = "submit" value="Delete" />
-                    <a class="cancel" href = "{{url_for('show_item', category_id = item.category_id, item_id = item.id)}}">Cancel</a>
-                </form>
+        <div class="wrapper">
+            <div class = "item-detail-image">
+                {% if item.image %}
+                <img src = "../../../{{item.image}}" />
+                {% else %}
+                <img src = "../../../static/images/no-image.jpg" />
+                {% endif %}
             </div>
-
+            <div class= "item-detail-description">
+                <p class="item-detail-price">{{item.price}}</p>
+                <p>{{item.description}}</p>
+            </div>
         </div>
         <div class="footer">
             <p class="about">home catalog 2016</p>

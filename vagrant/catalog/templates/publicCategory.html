@@ -22,14 +22,6 @@
                 <a href= "{{url_for('categories_list')}}">Shop</a>
                 <span>/ {{category.name}}</span>
             </div>
-
-            <div class = "controls">
-                <a class="control" href="{{url_for('new_item', category_id = category.id)}}" title="Add New Item">+</a>
-                {% if category.user_id == session.user_id %}
-                <a class="control" href = "{{url_for('delete_category', category_id = category.id)}}" title="Delete Category">X</a>
-                <a class="control" href = "{{url_for('edit_category', category_id = category.id)}}" title="Edit Category">?</a>
-                {% endif %}
-            </div>
         </div>
 
         <div class="header">
@@ -40,11 +32,11 @@
             <div class = "item-list">
                 {% for i in items %}
                 <a class="item" href="{{url_for('show_item', item_id=i.id, category_id=i.category_id) }}">
-                    <div class = "item-mobile-info">
-                        <div class = "item-name">{{i.name}}</div>
-                        <div class = "item-price">{{i.price}}</div>
-                    </div>
                     <div class="item-tile">
+                        <div class = "item-mobile-info">
+                            <div class = "item-name">{{i.name}}</div>
+                            <div class = "item-price">{{i.price}}</div>
+                        </div>
                         {% if i.image %}
                         <div class="overlay">
                         {% else %}
@@ -52,10 +44,6 @@
                         {% endif %}
                             <div class = "item-name">{{i.name}}</div>
                             <div class = "item-price">{{i.price}}</div>
-                            {% if i.user_id == session.user_id %}
-                            <a class="item-controls" href = "{{url_for('delete_item', category_id = i.category_id, item_id = i.id)}}" title="Delete Item">X</a>
-                            <a class="item-controls" href = "{{url_for('edit_item', category_id = i.category_id, item_id = i.id)}}" title="Edit Item">?</a>
-                            {% endif %}
                         </div>
                         <div class = "item-image">
                             {% if i.image %}

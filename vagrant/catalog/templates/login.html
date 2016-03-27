@@ -1,24 +1,59 @@
 <html>
     <head>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
-        <link href='https://fonts.googleapis.com/css?family=Rubik:700|Playfair+Display' rel='stylesheet' type='text/css'>
-        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+        <link href='https://fonts.googleapis.com/css?family=Work+Sans:100|Alegreya' rel='stylesheet' type='text/css'>
+    <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="//apis.google.com/js/platform.js?onload=start"> </script>
     </head>
     <body>
         <div class="top-nav">
-            <div class="login">LOGIN</div>
-            <div class="home">HOME</div>
-        </div>
-        <div class = "wrapper">
-            <div class = "login-box">
-                <-- TODO - create login form -->
+            <div class="home">
+                <a href = "{{url_for('categories_list')}}">Home</a>
             </div>
         </div>
-        <div class="footer">
-            <p class="about">Mystery Shack Online Catalog</p>
-            <img class="badge" src="https://upload.wikimedia.org/wikipedia/en/c/c2/Gravity_Falls_logo.png"/>
-            <p class="visit">618 Gopher Road, Gravity Falls, OR</p>
+        <!-- GOOGLE PLUS SIGN IN-->
+        <div class="sign-in-box">
+            <div class="sign-in-prompt">Log in with Google</div>
+              <div id="sign-in-button">
+                  <span class="g-signin"
+                    data-scope="openid email"
+                    data-clientid="894670351449-ma16r85tmjdshcld1ptp6baoe3mpgchi.apps.googleusercontent.com"
+                    data-redirecturi="postmessage"
+                    data-accesstype="offline"
+                    data-cookiepolicy="single_host_origin"
+                    data-callback="signInCallback"
+                    data-approvalprompt="force">
+                  </span>
+              </div>
         </div>
-    </body>
-</html>
+        <div id="result"></div>
+        <script>
+            function signInCallback(authResult) {
+              if (authResult['code']) {
+                // Hide the sign-in button now that the user is authorized
+                $('#signinButton').attr('style', 'display: none');
+                    // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+                    $.ajax({
+                         type: 'POST',
+                         url: '/gconnect?state={{STATE}}',
+                         processData: false,
+                         data: authResult['code'],
+                         contentType: 'application/octet-stream; charset=utf-8',
+                         success: function(result) {
+                             // Handle or verify the server response if necessary.
+                            if (result) {
+                                $('#result').html(result)
+                                setTimeout(function() {
+                                    window.location.href = "/";
+                                }, 4000);
+                            }  else {
+                                $('#result').html('Failed to make a server-side call.');
+                            }
+                        }
+                      });
+                  }
+              }
+        </script>
+      </body>
+ </html>

@@ -1,4 +1,4 @@
-from catalog_setup import Base, Category, Item
+from catalog_setup import Base, Category, Item, User
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -8,116 +8,314 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
+# Create dummy user
+User1 = User(name="Robo Barista", email="tinnyTim@udacity.com",
+             picture='https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
+session.add(User1)
+session.commit()
+
 # add categories to the database
-clothing = Category(name = "Clothing")
-session.add(clothing)
+lighting = Category(user_id=1, name="Lighting")
+session.add(lighting)
+session.commit()
 
-accessories = Category(name = "Accessories")
+chairs = Category(user_id=1, name="Chairs")
+session.add(chairs)
+session.commit()
+
+tables = Category(user_id=1, name="Tables + Dressers")
+session.add(tables)
+session.commit()
+
+accessories = Category(user_id=1, name="Home Accessories")
 session.add(accessories)
+session.commit()
 
-gifts = Category(name = "Gifts")
-session.add(gifts)
+kitchen = Category(user_id=1, name="Kitchen")
+session.add(kitchen)
+session.commit()
 
-figures = Category(name = "Wax Figures")
-session.add(figures)
-
-journals = Category(name = "Journals")
-session.add(journals)
-
-stickers = Category(name = "Stickers")
-session.add(stickers)
-
+sofas = Category(user_id=1, name="Sofas + Benches")
+session.add(sofas)
+session.commit()
 
 # add items to the database
+chessBoard = Item(user_id=1, name="Chess Board", description="Enjoy a game of chess in elegance with this glass and chrome chess set",
+                     price="$59.50", image="static/images/accessories01.jpg", category=accessories)
+session.add(chessBoard)
+session.commit()
 
-mysteryShirt = Item(name="Mystery Shack Staff T-shirt", description="", price="$25", image="soos_shirt.jpg", category_id=1)
-session.add(mysteryShirt)
+mask = Item(user_id=1, name="Chinese Mask", description="Charm or terrify your guests with this dragon mask. Perfect for any space!",
+                     price="$89.50", image="static/images/accessories02.jpg", category=accessories)
+session.add(mask)
+session.commit()
 
-rainbowSweater = Item(name="Rainbow Sweater", description="", price="$35", image="mabel_sweater.jpg", category_id=1)
-session.add(rainbowSweater)
+sittingMonkey = Item(user_id=1, name="Sitting Monkey Statue", description="The perfect companion, this monkey will sit beside you and read quietly all day!",
+                     price="$89.50", image="static/images/accessories03.jpg", category=accessories)
+session.add(sittingMonkey)
+session.commit()
 
-vest = Item(name="Explorer Vest", description="", price="$35", image="dipper_vest.jpg", category_id=1)
-session.add(vest)
+walkingMonkey = Item(user_id=1, name="Sitting Monkey Statue", description="Add a spirit of adventure to your home with this curious monkey statue",
+                     price="$89.50", image="static/images/accessories04.jpg", category=accessories)
+session.add(walkingMonkey)
+session.commit()
 
-plaidShirt = Item(name="Green Plaid Shirt", description="", price="$35", image="wendy_shirt.jpg", category_id=1)
-session.add(plaidShirt)
+orange = Item(user_id=1, name="Decorative Orange Slices", description="Guaranteed not to rot!",
+                     price="$8.50", image="static/images/accessories05.jpg", category=accessories)
+session.add(orange)
+session.commit()
 
-skullSweatshirt = Item(name="Robbie V Hooded Sweatshirt", description="", price="$50", image="robbie_shirt.jpg", category_id=1)
-session.add(skullSweatshirt)
+wateringCan = Item(user_id=1, name="Orange Watering Can", description="A functional and colorful addition to your home or garden",
+                     price="$29.50", image="static/images/accessories06.jpg", category=accessories)
+session.add(wateringCan)
+session.commit()
 
-blueSuit = Item(name="Powder Blue Suit (small sizes only)", description="", price="$60", image="gideon_suit.jpg", category_id=1)
-session.add(blueSuit)
+vases = Item(user_id=1, name="Metal Vases", description="If you look close enough, you can see your own reflection in these lovely decorative vases",
+                     price="$79.50", image="static/images/accessories07.jpg", category=accessories)
+session.add(vases)
+session.commit()
 
-bolo = Item(name="Bolo", description="", price="$20", image="stan_bolo.jpg", category_id=2)
-session.add(bolo)
+welcomeMat = Item(user_id=1, name="Welcome Mat", description="Your guests will appreciate your hospitality",
+                     price="$29.50", image="static/images/accessories08.jpg", category=accessories)
+session.add(welcomeMat)
+session.commit()
 
-fez = Item(name="Fez", description="", price="$30", image="stan_fez.jpg", category_id=2)
-session.add(fez)
+cat = Item(user_id=1, name="Wooden Cat", description="Real pets are a big responsibility. This wooden cat will keep you company even if you forget to refill its water bowl.",
+                     price="$39.50", image="static/images/accessories09.jpg", category=accessories)
+session.add(cat)
+session.commit()
 
-eyepatch = Item(name="Eyepatch", description="", price="$20", image="stan_eyepatch.jpg", category_id=2)
-session.add(eyepatch)
+chair1 = Item(user_id=1, name="Covered Chair", description="A conversation piece for inside or outside your home",
+                     price="$339.50", image="static/images/chairs01.jpg", category=chairs)
+session.add(chair1)
+session.commit()
 
-treeHat = Item(name="Gravity Falls Souvenir Hat", description="", price="$30", image="dipper_hat.jpg", category_id=2)
-session.add(treeHat)
+chair4 = Item(user_id=1, name="Wicker Chair", description="Wicker chair with black cushions",
+                     price="$199.50", image="static/images/chairs04.jpg", category=chairs)
+session.add(chair4)
+session.commit()
 
-flappyHat = Item(name="Hat With Flaps", description="", price="$30", image="wendy_hat.jpg", category_id=2)
-session.add(flappyHat)
+chair5 = Item(user_id=1, name="Translucent Chair", description="Rainbow chair that creates an interesting shadow",
+                     price="$99.50", image="static/images/chairs05.jpg", category=chairs)
+session.add(chair5)
+session.commit()
 
-wornHat = Item(name="Vintage Hat", description="", price="$30", image="mcgucket_hat.jpg", category_id=2)
-session.add(wornHat)
+chair6 = Item(user_id=1, name="Swirl Chair", description="Metal swirl-back chair",
+                     price="$179.50", image="static/images/chairs06.jpg", category=chairs)
+session.add(chair6)
+session.commit()
 
-mug = Item(name="Mystery Shack Souvenir Mug", description="", price="$15", image="mug.jpg", category_id=3)
-session.add(mug)
+chair7 = Item(user_id=1, name="Director's Chair", description="Orange director's chair. Folds to save space",
+                     price="$59.50", image="static/images/chairs07.jpg", category=chairs)
+session.add(chair7)
+session.commit()
 
-bobblehead = Item(name="Stan Bobblehead", description="", price="$25", image="bobblehead.jpg", category_id=3)
-session.add(bobblehead)
+chair8 = Item(user_id=1, name="Drawing Chair", description="Rolling chair with high seat",
+                     price="$89.50", image="static/images/chairs08.jpg", category=chairs)
+session.add(chair8)
+session.commit()
 
-camera = Item(name="Disposable Camera", description="", price="$15", image="camera.jpg", category_id=3)
-session.add(camera)
+chair9 = Item(user_id=1, name="Yellow Chair", description="Comfortable yellow chair with ottoman",
+                     price="$359.50", image="static/images/chairs09.jpg", category=chairs)
+session.add(chair9)
+session.commit()
 
-puppet = Item(name="Bumblebee Puppet", description="", price="$25", image="puppet.jpg", category_id=3)
-session.add(puppet)
+chair10 = Item(user_id=1, name="Geometric Chair", description="Armchair with a whimsical geometric pattern",
+                     price="$289.50", image="static/images/chairs10.jpg", category=chairs)
+session.add(chair10)
+session.commit()
 
-flashlight = Item(name="Magic Flashlight", description="", price="$75", image="flashlight.jpg", category_id=3)
-session.add(flashlight)
+chair11 = Item(user_id=1, name="Office Chair", description="Leather office chair",
+                     price="$159.50", image="static/images/chairs11.jpg", category=chairs)
+session.add(chair11)
+session.commit()
 
-stan = Item(name="Wax Stanford Pines", description="", price="$250", image="stan.jpg", category_id=4)
-session.add(stan)
+chair12 = Item(user_id=1, name="Barstool", description="Attractive seating for your home bar",
+                     price="$99.50", image="static/images/chairs12.jpg", category=chairs)
+session.add(chair12)
+session.commit()
 
-coolio = Item(name="Wax Coolio", description="", price="$250", image="coolio.jpg", category_id=4)
-session.add(coolio)
+chair13 = Item(user_id=1, name="Barstool With Rounded Back", description="Attractive seating for your home bar",
+                     price="$99.50", image="static/images/chairs13.jpg", category=chairs)
+session.add(chair13)
+session.commit()
 
-king = Item(name="Wax Larry King", description="", price="$250", image="king.jpg", category_id=4)
-session.add(king)
+chair14 = Item(user_id=1, name="Barstool With Straight Legs", description="Attractive seating for your home bar",
+                     price="$99.50", image="static/images/chairs14.jpg", category=chairs)
+session.add(chair14)
+session.commit()
 
-nixon = Item(name="Wax Richard Nixon", description="", price="$250", image="nixon.jpg", category_id=4)
-session.add(nixon)
+chair15 = Item(user_id=1, name="Barstool With Straight Back", description="Attractive seating for your home bar",
+                     price="$99.50", image="static/images/chairs15.jpg", category=chairs)
+session.add(chair15)
+session.commit()
 
-journal0 = Item(name="Journal 1", description="", price="$20", image="journal0.jpg", category_id=5)
-session.add(journal0)
+chair16 = Item(user_id=1, name="Red Barstool", description="Attractive seating for your home bar",
+                     price="$99.50", image="static/images/chairs16.jpg", category=chairs)
+session.add(chair16)
+session.commit()
 
-journal2 = Item(name="Journal 2", description="", price="$20", image="journal2.jpg", category_id=5)
-session.add(journal2)
+chair17 = Item(user_id=1, name="Red Chair", description="Comfortable red chair with ottoman",
+                     price="$359.50", image="static/images/chairs17.jpg", category=chairs)
+session.add(chair17)
+session.commit()
 
-journal3 = Item(name="Journal 3", description="", price="OUT OF STOCK", image="journal3.jpg", category_id=5)
-session.add(journal3)
+blueBowl = Item(user_id=1, name="Blue Bowl", description="Ceramic bowl for soup or cereal",
+                     price="$11.50", image="static/images/kitchen01.jpg", category=kitchen)
+session.add(blueBowl)
+session.commit()
 
-dino = Item(name="Ext-ROAR-dinary Sticker", description="", price="$5", image="dino.jpg", category_id=6)
-session.add(dino)
+woodenDish = Item(user_id=1, name="Wooden Serving Dish", description="Triangular wooden serving dish",
+                     price="$39.50", image="static/images/kitchen02.jpg", category=kitchen)
+session.add(woodenDish)
+session.commit()
 
-GFbumper = Item(name="Gravity Falls Souvenir Bumper Sticker", description="", price="$5", image="GFbumper.jpg", category_id=6)
-session.add(GFbumper)
+teaSet = Item(user_id=1, name="CMY Tea Set", description="Colorful set of tea cups and matching saucers",
+                     price="$49.50", image="static/images/kitchen03.jpg", category=kitchen)
+session.add(teaSet)
+session.commit()
 
-shackSticker = Item(name="Mystery Shack Souvenir Bumper Sticker", description="", price="$5", image="shackSticker.jpg", category_id=6)
-session.add(shackSticker)
+teaCup = Item(user_id=1, name="Glass Mug", description="Glass mug for hot or cold beverages",
+                     price="$11.50", image="static/images/kitchen04.jpg", category=kitchen)
+session.add(teaCup)
+session.commit()
 
-sevral = Item(name="Sev'ral Timez Biggest Fan Sticker", description="", price="$5", image="sevral.jpg", category_id=6)
-session.add(sevral)
+espresso = Item(user_id=1, name="Espresso Cup and Saucer", description="Purple espresso cup with saucer",
+                     price="$11.50", image="static/images/kitchen05.jpg", category=kitchen)
+session.add(espresso)
+session.commit()
 
-please = Item(name="Please Sticker", description="", price="$5", image="please.jpg", category_id=6)
-session.add(please)
+glassBowl = Item(user_id=1, name="Glass Bowl", description="Glass bowl for fruit or snacks",
+                     price="$15.50", image="static/images/kitchen06.jpg", category=kitchen)
+session.add(glassBowl)
+session.commit()
 
-sticktionary = Item(name="Sticktionary", description="", price="$20", image="sticktionary.jpg", category_id=6)
-session.add(sticktionary)
+paintedBowl = Item(user_id=1, name="Painted Bowl", description="Painted ceramic bowl",
+                     price="$15.50", image="static/images/kitchen07.jpg", category=kitchen)
+session.add(paintedBowl)
+session.commit()
 
+wineGlass = Item(user_id=1, name="Wine Glass", description="Wine glass with stem",
+                     price="$8.50", image="static/images/kitchen08.jpg", category=kitchen)
+session.add(wineGlass)
+session.commit()
+
+plates = Item(user_id=1, name="Plate Set", description="Set of black and red square ceramic plates",
+                     price="$29.50", image="static/images/kitchen09.jpg", category=kitchen)
+session.add(plates)
+session.commit()
+
+plates2 = Item(user_id=1, name="Plate Set", description="Set of red and yellow round plates with gold-colored accents",
+                     price="$29.50", image="static/images/kitchen10.jpg", category=kitchen)
+session.add(plates2)
+session.commit()
+
+teaHolder = Item(user_id=1, name="Tea Holder", description="Metal base for holding hot tea cups",
+                     price="$11.50", image="static/images/kitchen11.jpg", category=kitchen)
+session.add(teaHolder)
+session.commit()
+
+lamp = Item(user_id=1, name="Butterfly Lamp", description="Stylish table lamp with butterfly cutouts",
+                     price="$49.50", image="static/images/lighting01.jpg", category=lighting)
+session.add(lamp)
+session.commit()
+
+greenLantern = Item(user_id=1, name="Green Lantern", description="Mint-colored decorative lantern with tea light",
+                     price="$39.50", image="static/images/lighting02.jpg", category=lighting)
+session.add(greenLantern)
+session.commit()
+
+redLantern = Item(user_id=1, name="Red Lantern", description="Red-colored decorative lantern with tea light",
+                     price="$39.50", image="static/images/lighting03.jpg", category=lighting)
+session.add(redLantern)
+session.commit()
+
+streetLight = Item(user_id=1, name="Vintage Street Light", description="Vintage street light stands 12ft tall",
+                     price="$159.50", image="static/images/lighting04.jpg", category=lighting)
+session.add(streetLight)
+session.commit()
+
+teaLight = Item(user_id=1, name="Replacement Tea Light", description="Replacement tea light for lanterns",
+                     price="$3.50", image="static/images/lighting05.jpg", category=lighting)
+session.add(teaLight)
+session.commit()
+
+porchLight = Item(user_id=1, name="Fancy Porch Light", description="Fancy porch light. Adds immediate curb appeal!",
+                     price="$149.50", image="static/images/lighting06.jpg", category=lighting)
+session.add(porchLight)
+session.commit()
+
+ceilingLight = Item(user_id=1, name="Stained Glass Ceiling Light", description="This decorative ceiling light will be the focal point of any room!",
+                     price="$259.50", image="static/images/lighting07.jpg", category=lighting)
+session.add(ceilingLight)
+session.commit()
+
+bench = Item(user_id=1, name="Indoor/Outdoor Bench", description="Indoor/outdoor bench is portable and perfect for adding extra seating",
+                     price="$89.50", image="static/images/sofas01.jpg", category=sofas)
+session.add(bench)
+session.commit()
+
+sectional1 = Item(user_id=1, name="Sectional", description="Brown sectional with beige cushions",
+                     price="$599.50", image="static/images/sofas02.jpg", category=sofas)
+session.add(sectional1)
+session.commit()
+
+sectional2 = Item(user_id=1, name="Sectional", description="Black sectional with black and beige pillows",
+                     price="599.50", image="static/images/sofas03.jpg", category=sofas)
+session.add(sectional2)
+session.commit()
+
+leatherSofa = Item(user_id=1, name="Black Leather Sofa", description="Black tufted leather sofa",
+                     price="$699.50", image="static/images/sofas04.jpg", category=sofas)
+session.add(leatherSofa)
+session.commit()
+
+modernSofa = Item(user_id=1, name="Modern Sofa", description="Chocolate brown modern sofa ",
+                     price="$699.50", image="static/images/sofas05.jpg", category=sofas)
+session.add(modernSofa)
+session.commit()
+
+leatherSofa2 = Item(user_id=1, name="Red-Brown Leather Sofa", description="Red-brown oversized leather sofa",
+                     price="$699.50", image="static/images/sofas06.jpg", category=sofas)
+session.add(leatherSofa2)
+session.commit()
+
+leatherSofa3 = Item(user_id=1, name="Red Leather Sofa", description="Bright red leather sofa",
+                     price="$699.50", image="static/images/sofas07.jpg", category=sofas)
+session.add(leatherSofa3)
+session.commit()
+
+table1 = Item(user_id=1, name="Floral Rounded Dresser", description="Rounded dresser with 3 drawers",
+                     price="$499.50", image="static/images/tables01.jpg", category=tables)
+session.add(table1)
+session.commit()
+
+table2 = Item(user_id=1, name="Red Wardrobe", description="Red wardrobe with 2 doors and storage drawer",
+                     price="$599.50", image="static/images/tables02.jpg", category=tables)
+session.add(table2)
+session.commit()
+
+table3 = Item(user_id=1, name="Picnic Table", description="Picnic table for indoor or outdoor use",
+                     price="$499.50", image="static/images/tables03.jpg", category=tables)
+session.add(table3)
+session.commit()
+
+table4 = Item(user_id=1, name="Nightstand", description="Nightstand with drawer and 2 doors",
+                     price="$499.50", image="static/images/tables04.jpg", category=tables)
+session.add(table4)
+session.commit()
+
+table5 = Item(user_id=1, name="Meeting Table with 4 Chairs", description="Square wooden table and 4 chairs with rounded backs",
+                     price="$999.50", image="static/images/tables05.jpg", category=tables)
+session.add(table5)
+session.commit()
+
+table6 = Item(user_id=1, name="Round Table", description="Small round wooden table with 4 legs",
+                     price="$299.50", image="static/images/tables06.jpg", category=tables)
+session.add(table6)
+session.commit()
+
+table7 = Item(user_id=1, name="Distressed Table", description="Brand new!",
+                     price="$499.50", image="static/images/tables07.jpg", category=tables)
+session.add(table7)
 session.commit()
