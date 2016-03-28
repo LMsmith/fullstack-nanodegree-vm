@@ -17,3 +17,7 @@
 1. Login to the application using Google Sign In
 2. Click on the '-' icon to delete a category or item and the '?' to edit it.
 * You may only edit or delete an item you have created.
+
+
+Based on code by Lorenzo Brown from Udacity's Full Stack Foundation course.
+All images from Freeimages.com
