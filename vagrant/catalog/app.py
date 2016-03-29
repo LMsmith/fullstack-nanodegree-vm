@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
+from flask import Flask, render_template, g, request, redirect, jsonify, url_for, flash
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from catalog_setup import Base, Category, Item, User
@@ -11,8 +11,12 @@ import httplib2
 import json
 from flask import make_response
 import requests
+from functools import wraps
+from dict2xml import dict2xml as xmlify
+from flask.ext.seasurf import SeaSurf
 
 app = Flask(__name__)
+csrf = SeaSurf(app)
 
 CLIENT_ID = json.loads(
     open('client_secrets.json', 'r').read())['web']['client_id']
@@ -32,7 +36,7 @@ def show_login():
     login_session['state'] = state
     return render_template('login.html', STATE=state)
 
-
+# Connect to the Google API
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
     # Validate state token
@@ -81,6 +85,7 @@ def gconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
+    # Check if the user is already logged in
     stored_credentials = login_session.get('credentials')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_credentials is not None and gplus_id == stored_gplus_id:
@@ -100,6 +105,7 @@ def gconnect():
 
     data = answer.json()
 
+    # Store user data in the session
     login_session['username'] = data['name']
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
@@ -112,6 +118,7 @@ def gconnect():
         user_id = create_user(login_session)
     login_session['user_id'] = user_id
 
+    # Display confirmation message for successful login
     output = ''
     output += '<h1>Welcome, '
     output += login_session['username']
@@ -122,7 +129,7 @@ def gconnect():
 
 # User Helper Functions
 
-
+# Create a new user
 def create_user(login_session):
     newUser = User(name=login_session['username'], email=login_session[
                    'email'], picture=login_session['picture'])
@@ -131,12 +138,12 @@ def create_user(login_session):
     user = session.query(User).filter_by(email=login_session['email']).one()
     return user.id
 
-
+# Get info about the user from the User table
 def get_user_info(user_id):
     user = session.query(User).filter_by(id=user_id).one()
     return user
 
-
+# Get the user's email  for authorization checks during the session
 def get_user_ID(email):
     try:
         user = session.query(User).filter_by(email=email).one()
@@ -165,12 +172,24 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
+# Create a login_required decorator function
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' not in login_session:
+            return redirect(url_for('show_login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
+
+# Get a list of all categories in the database
 @app.route('/')
 @app.route('/categories/')
 def categories_list():
     categories = session.query(Category)
     return render_template('categoryList.html', categories = categories)
 
+# Show the category page for the selected category
+# List all items that belong to that category
 @app.route('/categories/<int:category_id>/')
 def show_category(category_id):
     category = session.query(Category).filter_by(id = category_id).one()
@@ -180,11 +199,11 @@ def show_category(category_id):
     else:
         return render_template('category.html', category = category, items = items)
 
+#
 @app.route('/categories/<int:category_id>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_category(category_id):
     category = session.query(Category).filter_by(id = category_id).one()
-    if 'username' not in login_session:
-        return redirect('/login')
     if category.user_id != login_session['user_id']:
         return "<script>function myFunction() {alert('You are not authorized to edit this category. Please create your own category in order to edit.'); window.history.back();}</script><body onload='myFunction()''>"
     if request.method == 'POST':
@@ -197,6 +216,7 @@ def edit_category(category_id):
         return render_template('editCategory.html', category=category)
 
 @app.route('/categories/<int:category_id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete_category(category_id):
     category = session.query(Category).filter_by(id = category_id).one()
     if 'username' not in login_session:
@@ -211,9 +231,8 @@ def delete_category(category_id):
         return render_template('deleteCategory.html', category=category)
 
 @app.route('/categories/add', methods=['GET', 'POST'])
+@login_required
 def new_category():
-    if 'username' not in login_session:
-        return redirect('/login')
     if request.method == 'POST':
         newCategory = Category(name=request.form['category-name'], user_id=login_session['user_id'])
         session.add(newCategory)
@@ -233,11 +252,10 @@ def show_item(item_id, category_id):
         return render_template('item.html', item=item, category=category)
 
 @app.route('/categories/<int:category_id>/<int:item_id>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_item(item_id, category_id):
     item = session.query(Item).filter_by(id = item_id).one()
     category = session.query(Category).filter_by(id = category_id).one()
-    if 'username' not in login_session:
-        return redirect('/login')
     if item.user_id != login_session['user_id']:
         return "<script>function myFunction() {alert('You are not authorized to edit this item. Please create your own item in order to edit.'); window.history.back();}</script><body onload='myFunction()''>"
     if request.method == 'POST':
@@ -256,11 +274,10 @@ def edit_item(item_id, category_id):
         return render_template('editItem.html', item=item, category=category)
 
 @app.route('/categories/<int:category_id>/<int:item_id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete_item(category_id, item_id):
     item = session.query(Item).filter_by(id = item_id).one()
     category = session.query(Category).filter_by(id = category_id).one()
-    if 'username' not in login_session:
-        return redirect('/login')
     if item.user_id != login_session['user_id']:
         return "<script>function myFunction() {alert('You are not authorized to delete this item. You may only delete an item you have created.'); window.history.back();}</script><body onload='myFunction()''>"
     if request.method == 'POST':
@@ -274,7 +291,7 @@ def delete_item(category_id, item_id):
 def new_item(category_id):
     category = session.query(Category).filter_by(id = category_id).one()
     if request.method == 'POST':
-        newItem = Item(name=request.form['item-name'], description=request.form['item-description'], price=request.form['item-price'], category_id=category_id, user_id=login_session['user_id'])
+        newItem = Item(name=request.form['item-name'], description=request.form['item-description'], price=request.form['item-price'], image=request.form['item-image'], category_id=category_id, user_id=login_session['user_id'])
         session.add(newItem)
         session.commit()
         return redirect(url_for('show_category', category_id=category.id))
@@ -316,6 +333,21 @@ def item_JSON(category_id, item_id):
 def all_items_JSON():
     items = session.query(Item).all()
     return jsonify(Items=[i.serialize for i in items])
+
+@app.route('/categories/xml')
+def categories_list_xml():
+    categories = session.query(Category).all()
+    data = jsonify(categories=[c.serialize for c in categories])
+    xml = xmlify(data.response, wrap="all", indent="  ")
+    return xml
+
+@app.route('/categories/<int:category_id>/xml')
+def category_xml(category_id):
+    items = session.query(Item).filter_by(
+        category_id=category_id).all()
+    data = jsonify(items=[i.serialize for i in items])
+    xml = xmlify(data.response, wrap="all", indent="  ")
+    return xml
 
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'

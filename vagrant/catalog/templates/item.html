@@ -40,7 +40,11 @@
         <div class="wrapper">
             <div class = "item-detail-image">
                 {% if item.image %}
-                <img src = "../../../{{item.image}}" />
+                    {% if item.user_id == 1 %}
+                    <img src = "../{{item.image}}" />
+                    {% else %}
+                    <img src = "{{item.image}}" />
+                    {% endif %}
                 {% else %}
                 <img src = "../../../static/images/no-image.jpg" />
                 {% endif %}

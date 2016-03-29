@@ -33,6 +33,7 @@
         <div class = "wrapper">
             <div class = "edit-item-content">
                 <form action = "{{url_for('new_item', category_id = category.id)}}" method = "POST">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
                     <dl>
                         <dt>Name:</dt>
                         <dd><input type = "text" name = "item-name" required></dd>
@@ -40,6 +41,8 @@
                         <dd><textarea name = "item-description" rows = "5" cols = "40" required></textarea></dd>
                         <dt>Price:</dt>
                         <dd><input type = "text" size = "10" name = "item-price" required></dd>
+                        <dt>Image:</dt>
+                        <dd><input type = "text" size = "80" name = "item-image"></dd>
                     </dl>
                     <input type='submit' value='Create'>
                     <a class="cancel" href = "{{url_for('show_category', category_id=category.id) }}">Cancel</a>

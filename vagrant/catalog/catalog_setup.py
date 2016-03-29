@@ -19,6 +19,7 @@ class Category(Base):
 
     name = Column(String(80), nullable = False)
     id = Column(Integer, primary_key = True)
+    items = relationship('Item', cascade='all, delete-orphan')
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
@@ -40,7 +41,7 @@ class Item(Base):
     price = Column(String(8), nullable = False)
     image = Column(String)
     category_id = Column(Integer, ForeignKey('Category.id'))
-    category = relationship(Category)
+    category = relationship('Category')
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 

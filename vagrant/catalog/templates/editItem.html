@@ -35,15 +35,16 @@
         <div class = "wrapper">
             <div class = "edit-item-content">
                 <form action = "{{url_for('edit_item', category_id = item.category_id, item_id = item.id)}}" method = "POST">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
                     <dl>
                         <dt>Name:</dt>
-                            <dd><input type = "text" name = "item-name" placeholder = "{{item.name}}"/></dd>
+                            <dd><input type = "text" name = "item-name" value = "{{item.name}}"/></dd>
                         <dt>Description:</dt>
-                            <dd><textarea name = "item-description" rows = "5" columns = "40" placeholder = "{{item.description}}"></textarea></dd>
+                            <dd><textarea name = "item-description" rows = "5" columns = "40">{{item.description}}</textarea></dd>
                         <dt>Price:</dt>
-                            <dd><input type = "text" name = "item-price" placeholder = "{{item.price}}"/></dd>
+                            <dd><input type = "text" name = "item-price" value = "{{item.price}}"/></dd>
                         <dt>Image:</dt>
-                            <dd><input type = "text" name = "item-image" placeholder = "{{item.image}}"/></dd>
+                            <dd><input type = "text" name = "item-image" value = "{{item.image}}"/></dd>
                     <input type = "submit" value="Edit" />
                 </form>
                 <a class="cancel" href = "{{url_for('show_item', item_id=item.id, category_id=item.category_id) }}">Cancel</a>
