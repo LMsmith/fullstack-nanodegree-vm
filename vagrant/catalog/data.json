@@ -1,0 +1,468 @@
+{
+  "Items": [
+    {
+      "user_id": 1,
+      "name": "Chess Board",
+      "price": "$59.50",
+      "category_id": 4,
+      "id": 1,
+      "description": "Enjoy a game of chess in elegance with this glass and chrome chess set"
+    },
+    {
+      "user_id": 1,
+      "name": "Chinese Mask",
+      "price": "$89.50",
+      "category_id": 4,
+      "id": 2,
+      "description": "Charm or terrify your guests with this dragon mask. Perfect for any space!"
+    },
+    {
+      "user_id": 1,
+      "name": "Sitting Monkey Statue",
+      "price": "$89.50",
+      "category_id": 4,
+      "id": 3,
+      "description": "The perfect companion, this monkey will sit beside you and read quietly all day!"
+    },
+    {
+      "user_id": 1,
+      "name": "Sitting Monkey Statue",
+      "price": "$89.50",
+      "category_id": 4,
+      "id": 4,
+      "description": "Add a spirit of adventure to your home with this curious monkey statue"
+    },
+    {
+      "user_id": 1,
+      "name": "Decorative Orange Slices",
+      "price": "$8.50",
+      "category_id": 4,
+      "id": 5,
+      "description": "Guaranteed not to rot!"
+    },
+    {
+      "user_id": 1,
+      "name": "Orange Watering Can",
+      "price": "$29.50",
+      "category_id": 4,
+      "id": 6,
+      "description": "A functional and colorful addition to your home or garden"
+    },
+    {
+      "user_id": 1,
+      "name": "Metal Vases",
+      "price": "$79.50",
+      "category_id": 4,
+      "id": 7,
+      "description": "If you look close enough, you can see your own reflection in these lovely decorative vases"
+    },
+    {
+      "user_id": 1,
+      "name": "Welcome Mat",
+      "price": "$29.50",
+      "category_id": 4,
+      "id": 8,
+      "description": "Your guests will appreciate your hospitality"
+    },
+    {
+      "user_id": 1,
+      "name": "Wooden Cat",
+      "price": "$39.50",
+      "category_id": 4,
+      "id": 9,
+      "description": "Real pets are a big responsibility. This wooden cat will keep you company even if you forget to refill its water bowl."
+    },
+    {
+      "user_id": 1,
+      "name": "Covered Chair",
+      "price": "$339.50",
+      "category_id": 2,
+      "id": 10,
+      "description": "A conversation piece for inside or outside your home"
+    },
+    {
+      "user_id": 1,
+      "name": "Wicker Chair",
+      "price": "$199.50",
+      "category_id": 2,
+      "id": 11,
+      "description": "Wicker chair with black cushions"
+    },
+    {
+      "user_id": 1,
+      "name": "Translucent Chair",
+      "price": "$99.50",
+      "category_id": 2,
+      "id": 12,
+      "description": "Rainbow chair that creates an interesting shadow"
+    },
+    {
+      "user_id": 1,
+      "name": "Swirl Chair",
+      "price": "$179.50",
+      "category_id": 2,
+      "id": 13,
+      "description": "Metal swirl-back chair"
+    },
+    {
+      "user_id": 1,
+      "name": "Director's Chair",
+      "price": "$59.50",
+      "category_id": 2,
+      "id": 14,
+      "description": "Orange director's chair. Folds to save space"
+    },
+    {
+      "user_id": 1,
+      "name": "Drawing Chair",
+      "price": "$89.50",
+      "category_id": 2,
+      "id": 15,
+      "description": "Rolling chair with high seat"
+    },
+    {
+      "user_id": 1,
+      "name": "Yellow Chair",
+      "price": "$359.50",
+      "category_id": 2,
+      "id": 16,
+      "description": "Comfortable yellow chair with ottoman"
+    },
+    {
+      "user_id": 1,
+      "name": "Geometric Chair",
+      "price": "$289.50",
+      "category_id": 2,
+      "id": 17,
+      "description": "Armchair with a whimsical geometric pattern"
+    },
+    {
+      "user_id": 1,
+      "name": "Office Chair",
+      "price": "$159.50",
+      "category_id": 2,
+      "id": 18,
+      "description": "Leather office chair"
+    },
+    {
+      "user_id": 1,
+      "name": "Barstool",
+      "price": "$99.50",
+      "category_id": 2,
+      "id": 19,
+      "description": "Attractive seating for your home bar"
+    },
+    {
+      "user_id": 1,
+      "name": "Barstool With Rounded Back",
+      "price": "$99.50",
+      "category_id": 2,
+      "id": 20,
+      "description": "Attractive seating for your home bar"
+    },
+    {
+      "user_id": 1,
+      "name": "Barstool With Straight Legs",
+      "price": "$99.50",
+      "category_id": 2,
+      "id": 21,
+      "description": "Attractive seating for your home bar"
+    },
+    {
+      "user_id": 1,
+      "name": "Barstool With Straight Back",
+      "price": "$99.50",
+      "category_id": 2,
+      "id": 22,
+      "description": "Attractive seating for your home bar"
+    },
+    {
+      "user_id": 1,
+      "name": "Red Barstool",
+      "price": "$99.50",
+      "category_id": 2,
+      "id": 23,
+      "description": "Attractive seating for your home bar"
+    },
+    {
+      "user_id": 1,
+      "name": "Red Chair",
+      "price": "$359.50",
+      "category_id": 2,
+      "id": 24,
+      "description": "Comfortable red chair with ottoman"
+    },
+    {
+      "user_id": 1,
+      "name": "Blue Bowl",
+      "price": "$11.50",
+      "category_id": 5,
+      "id": 25,
+      "description": "Ceramic bowl for soup or cereal"
+    },
+    {
+      "user_id": 1,
+      "name": "Wooden Serving Dish",
+      "price": "$39.50",
+      "category_id": 5,
+      "id": 26,
+      "description": "Triangular wooden serving dish"
+    },
+    {
+      "user_id": 1,
+      "name": "CMY Tea Set",
+      "price": "$49.50",
+      "category_id": 5,
+      "id": 27,
+      "description": "Colorful set of tea cups and matching saucers"
+    },
+    {
+      "user_id": 1,
+      "name": "Glass Mug",
+      "price": "$11.50",
+      "category_id": 5,
+      "id": 28,
+      "description": "Glass mug for hot or cold beverages"
+    },
+    {
+      "user_id": 1,
+      "name": "Espresso Cup and Saucer",
+      "price": "$11.50",
+      "category_id": 5,
+      "id": 29,
+      "description": "Purple espresso cup with saucer"
+    },
+    {
+      "user_id": 1,
+      "name": "Glass Bowl",
+      "price": "$15.50",
+      "category_id": 5,
+      "id": 30,
+      "description": "Glass bowl for fruit or snacks"
+    },
+    {
+      "user_id": 1,
+      "name": "Painted Bowl",
+      "price": "$15.50",
+      "category_id": 5,
+      "id": 31,
+      "description": "Painted ceramic bowl"
+    },
+    {
+      "user_id": 1,
+      "name": "Wine Glass",
+      "price": "$8.50",
+      "category_id": 5,
+      "id": 32,
+      "description": "Wine glass with stem"
+    },
+    {
+      "user_id": 1,
+      "name": "Plate Set",
+      "price": "$29.50",
+      "category_id": 5,
+      "id": 33,
+      "description": "Set of black and red square ceramic plates"
+    },
+    {
+      "user_id": 1,
+      "name": "Plate Set",
+      "price": "$29.50",
+      "category_id": 5,
+      "id": 34,
+      "description": "Set of red and yellow round plates with gold-colored accents"
+    },
+    {
+      "user_id": 1,
+      "name": "Tea Holder",
+      "price": "$11.50",
+      "category_id": 5,
+      "id": 35,
+      "description": "Metal base for holding hot tea cups"
+    },
+    {
+      "user_id": 1,
+      "name": "Butterfly Lamp",
+      "price": "$49.50",
+      "category_id": 1,
+      "id": 36,
+      "description": "Stylish table lamp with butterfly cutouts"
+    },
+    {
+      "user_id": 1,
+      "name": "Green Lantern",
+      "price": "$39.50",
+      "category_id": 1,
+      "id": 37,
+      "description": "Mint-colored decorative lantern with tea light"
+    },
+    {
+      "user_id": 1,
+      "name": "Red Lantern",
+      "price": "$39.50",
+      "category_id": 1,
+      "id": 38,
+      "description": "Red-colored decorative lantern with tea light"
+    },
+    {
+      "user_id": 1,
+      "name": "Vintage Street Light",
+      "price": "$159.50",
+      "category_id": 1,
+      "id": 39,
+      "description": "Vintage street light stands 12ft tall"
+    },
+    {
+      "user_id": 1,
+      "name": "Replacement Tea Light",
+      "price": "$3.50",
+      "category_id": 1,
+      "id": 40,
+      "description": "Replacement tea light for lanterns"
+    },
+    {
+      "user_id": 1,
+      "name": "Fancy Porch Light",
+      "price": "$149.50",
+      "category_id": 1,
+      "id": 41,
+      "description": "Fancy porch light. Adds immediate curb appeal!"
+    },
+    {
+      "user_id": 1,
+      "name": "Stained Glass Ceiling Light",
+      "price": "$259.50",
+      "category_id": 1,
+      "id": 42,
+      "description": "This decorative ceiling light will be the focal point of any room!"
+    },
+    {
+      "user_id": 1,
+      "name": "Indoor/Outdoor Bench",
+      "price": "$89.50",
+      "category_id": 6,
+      "id": 43,
+      "description": "Indoor/outdoor bench is portable and perfect for adding extra seating"
+    },
+    {
+      "user_id": 1,
+      "name": "Sectional",
+      "price": "$599.50",
+      "category_id": 6,
+      "id": 44,
+      "description": "Brown sectional with beige cushions"
+    },
+    {
+      "user_id": 1,
+      "name": "Sectional",
+      "price": "599.50",
+      "category_id": 6,
+      "id": 45,
+      "description": "Black sectional with black and beige pillows"
+    },
+    {
+      "user_id": 1,
+      "name": "Black Leather Sofa",
+      "price": "$699.50",
+      "category_id": 6,
+      "id": 46,
+      "description": "Black tufted leather sofa"
+    },
+    {
+      "user_id": 1,
+      "name": "Modern Sofa",
+      "price": "$699.50",
+      "category_id": 6,
+      "id": 47,
+      "description": "Chocolate brown modern sofa "
+    },
+    {
+      "user_id": 1,
+      "name": "Red-Brown Leather Sofa",
+      "price": "$699.50",
+      "category_id": 6,
+      "id": 48,
+      "description": "Red-brown oversized leather sofa"
+    },
+    {
+      "user_id": 1,
+      "name": "Red Leather Sofa",
+      "price": "$699.50",
+      "category_id": 6,
+      "id": 49,
+      "description": "Bright red leather sofa"
+    },
+    {
+      "user_id": 1,
+      "name": "Floral Rounded Dresser",
+      "price": "$499.50",
+      "category_id": 3,
+      "id": 50,
+      "description": "Rounded dresser with 3 drawers"
+    },
+    {
+      "user_id": 1,
+      "name": "Red Wardrobe",
+      "price": "$599.50",
+      "category_id": 3,
+      "id": 51,
+      "description": "Red wardrobe with 2 doors and storage drawer"
+    },
+    {
+      "user_id": 1,
+      "name": "Picnic Table",
+      "price": "$499.50",
+      "category_id": 3,
+      "id": 52,
+      "description": "Picnic table for indoor or outdoor use"
+    },
+    {
+      "user_id": 1,
+      "name": "Nightstand",
+      "price": "$499.50",
+      "category_id": 3,
+      "id": 53,
+      "description": "Nightstand with drawer and 2 doors"
+    },
+    {
+      "user_id": 1,
+      "name": "Meeting Table with 4 Chairs",
+      "price": "$999.50",
+      "category_id": 3,
+      "id": 54,
+      "description": "Square wooden table and 4 chairs with rounded backs"
+    },
+    {
+      "user_id": 1,
+      "name": "Round Table",
+      "price": "$299.50",
+      "category_id": 3,
+      "id": 55,
+      "description": "Small round wooden table with 4 legs"
+    },
+    {
+      "user_id": 1,
+      "name": "Distressed Table",
+      "price": "$499.50",
+      "category_id": 3,
+      "id": 56,
+      "description": "Brand new!"
+    },
+    {
+      "user_id": 2,
+      "name": "test",
+      "price": "test",
+      "category_id": 2,
+      "id": 57,
+      "description": "test"
+    },
+    {
+      "user_id": 2,
+      "name": "new",
+      "price": "1",
+      "category_id": 4,
+      "id": 58,
+      "description": "new"
+    }
+  ]
+}
